@@ -1,0 +1,107 @@
+cmd 编译执行java命令
+
+场景：
+jre目录：c:/java/jre
+无包名的java文件1：c:/project/src/test1.java
+无包名的java文件2：c:/project/src/test2.java
+有包名的java文件1（包名为name）：c:/project/src/name/test1.java
+有包名的java文件2（包名为name）：c:/project/src/name/test2.java
+jar包1目录：c:/project/lib/jarTest1.jar
+jar包2目录：c:/project/lib/jarTest2.jar
+编译到的目录：c:/project2/bin2
+
+无包名class1文件目录：c:/project/bin/test1.class
+有包名class1文件目录：c:/project/bin/name/test1.class  （包名：package name;）
+
+cmd设置javahome环境变量
+cmd设置classpath环境变量
+
+
+一，编译
+  （一），任意目录打开cmd
+     （1）编译到java文件同级目录
+        1，无jar包无包名
+		  单个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  c:/project/src/test1.java
+		  多个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  c:/project/src/test1.java  c:/project/src/test2.java
+		2，有jar包无包名
+		  单个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  .;c:/project/lib/jarTest1.jar;c:/project/lib/jarTest2.jar  c:/project/src/test1.java
+		  多个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  .;c:/project/lib/jarTest1.jar;c:/project/lib/jarTest2.jar  c:/project/src/test1.java  c:/project/src/test2.java
+		3，无jar包有包名
+		  单个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  c:/project/src/name/test1.java
+		  多个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  c:/project/src/name/test1.java  c:/project/src/name/test2.java
+		4，有jar包有包名
+          单个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  .;c:/project/lib/jarTest1.jar;c:/project/lib/jarTest2.jar  c:/project/src/name/test1.java
+		  多个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  .;c:/project/lib/jarTest1.jar;c:/project/lib/jarTest2.jar  c:/project/src/name/test1.java  c:/project/src/name/test2.java
+     （2）编译到目标目录c:/project2/bin2
+	    在最后加  -d  c:/project2/bin2
+	
+	    1，无jar包无包名
+		
+		2，有jar包无包名
+		
+		3，无jar包有包名
+		
+		4，有jar包有包名
+
+  （二），相对目录打开cmd（即进入目标目录打开cmd）
+     （1）编译到java文件同级目录
+        1，无jar包无包名
+		  进入目录：c:/project/src/
+		  单个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  test1.java
+		  多个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  test1.java  test2.java
+		2，有jar包无包名
+		  进入目录：c:/project/src/
+		  单个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  .;c:/project/lib/jarTest1.jar;c:/project/lib/jarTest2.jar  test1.java
+		  多个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  .;c:/project/lib/jarTest1.jar;c:/project/lib/jarTest2.jar  test1.java  test2.java
+		3，无jar包有包名
+		  进入目录：c:/project/src/name/
+		  单个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  test1.java
+		  多个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  test1.java  test2.java
+		4，有jar包有包名
+          进入目录：c:/project/src/name/
+		  单个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  .;c:/project/lib/jarTest1.jar;c:/project/lib/jarTest2.jar  test1.java
+		  多个java文件编译：c:/java/jre/bin/javac  -encoding  utf-8  -cp  .;c:/project/lib/jarTest1.jar;c:/project/lib/jarTest2.jar  test1.java  test2.java
+ 
+     （2）编译到目标目录c:/project2/bin2
+	    在最后加  -d  c:/project2/bin2
+	    1，无jar包无包名
+		
+		2，有jar包无包名
+		
+		3，无jar包有包名
+		
+		4，有jar包有包名
+  
+  
+二，运行（带main方法的class，且不需要带后缀）
+  （一），任意目录打开cmd
+        1，无jar包无包名
+		  c:/java/jre/bin/java  -cp  c:/project/bin  test1
+		2，有jar包无包名
+		  c:/java/jre/bin/java  -cp  .;c:/project/lib/jarTest1.jar;c:/project/lib/jarTest2.jar;c:/project/bin  test1
+		3，无jar包有包名
+		  c:/java/jre/bin/java  -cp  c:/project/bin  name.test1
+		4，有jar包有包名
+		  c:/java/jre/bin/java  -cp  .;c:/project/lib/jarTest1.jar;c:/project/lib/jarTest2.jar;c:/project/bin  name.test1
+		
+  （二），相对目录打开cmd（即进入目标目录打开cmd）
+        1，无jar包无包名
+		  进入目录：c:/project/bin
+		  c:/java/jre/bin/java  -cp  test1
+		2，有jar包无包名
+		  进入目录：c:/project/bin
+		  c:/java/jre/bin/java  -cp  .;c:/project/lib/jarTest1.jar;c:/project/lib/jarTest2.jar  test1
+		3，无jar包有包名
+		  进入目录：c:/project/bin
+		  c:/java/jre/bin/java  -cp  name.test1
+		4，有jar包有包名
+		  进入目录：c:/project/bin
+		  c:/java/jre/bin/java  -cp  .;c:/project/lib/jarTest1.jar;c:/project/lib/jarTest2.jar  name.test1
+
+注意事项：
+          （1）可能需要设置classpath，可以cmd设置，比如  set classpath=c:/java/jre/lib/dt.jar;c:/java/jre/lib/tools.jar
+		     注意要把jdk/lib/tools.jar复制到jre/lib/tools.jar中，因为jre没有
+          （2）jre只需要文件夹就可以
+		  （3）在cmd中jre可以是绝对目录，在Runtime.exec()中cmd是相对目录，相对于java项目根目录
+		  （4）编译的时候，java文件绝对目录就是java文件所在最后目录，运行的时候，绝对目录是最上级包目录
+		  （5）本文档可供动态编译执行参考		  
